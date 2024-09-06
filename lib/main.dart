@@ -6,7 +6,7 @@ import 'login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(); // Ensure Firebase is initialized before running the app
   runApp(const MyApp());
 }
 
@@ -51,10 +51,13 @@ class _SignUpPageState extends State<SignUpPage> {
             email: _email!,
             password: _password!,
           );
-          Navigator.push(
+
+          // After successful signup, navigate to the study page
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                  builder: (context) => StudyPage()));
+                  builder: (context) => StudyPage())); // Assuming StudyPage handles file upload for authenticated users
+
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: const Text('Signup successful!'),
@@ -115,15 +118,12 @@ class _SignUpPageState extends State<SignUpPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // App logo or image at the top
                 const Icon(
                   Icons.person_add_alt_1,
                   size: 100.0,
                   color: Colors.blue,
                 ),
                 const SizedBox(height: 40),
-
-                // Title text
                 const Text(
                   "Create an Account",
                   style: TextStyle(
@@ -133,8 +133,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 const SizedBox(height: 30),
-
-                // Email field
                 TextFormField(
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.email),
@@ -156,8 +154,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-
-                // Password field
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -179,8 +175,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-
-                // Confirm Password field
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -202,8 +196,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 30),
-
-                // Signup button
                 _isLoading
                     ? const CircularProgressIndicator()
                     : SizedBox(
@@ -224,8 +216,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 const SizedBox(height: 15),
-
-                // Login option text
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

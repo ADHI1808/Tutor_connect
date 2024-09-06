@@ -1,6 +1,8 @@
-import 'package:demodev/main.dart';
+import 'package:demodev/study.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,7 +28,11 @@ class _LoginPageState extends State<LoginPage> {
           email: _email!,
           password: _password!,
         );
-        // Navigate to the next screen (e.g., home page) on successful login
+        // Navigate to StudyPage on successful login
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => StudyPage()),
+        );
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Login successful!')),
         );
@@ -133,7 +139,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: const Text(
                       'Login',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -152,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SignUpPage()));
+                                builder: (context) => const SignUpPage()));
                       },
                       child: const Text(
                         "Sign Up",

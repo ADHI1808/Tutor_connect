@@ -1,3 +1,4 @@
+import 'package:demodev/main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -148,8 +149,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextButton(
                       onPressed: () {
-                        // Navigate to signup page
-                        Navigator.pushNamed(context, '/signup');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpPage()));
                       },
                       child: const Text(
                         "Sign Up",

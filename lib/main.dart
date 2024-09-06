@@ -1,3 +1,4 @@
+import 'package:demodev/study.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Signup Page',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -49,7 +51,10 @@ class _SignUpPageState extends State<SignUpPage> {
             email: _email!,
             password: _password!,
           );
-          // Navigate to the next screen or display a success message
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => StudyPage()));
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: const Text('Signup successful!'),

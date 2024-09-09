@@ -54,7 +54,7 @@ class ContainerGrid extends StatelessWidget {
             }if (item == "11th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => elevenththCBSEPage()),
+                MaterialPageRoute(builder: (context) => EleventhCBSEPage()),
               );
             }if (item == "10th CBSE") {
               Navigator.push(

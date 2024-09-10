@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart'; // For viewing PDFs
 import '../Upload&Display/upload.dart';
 import '../study.dart';
 
@@ -59,6 +58,7 @@ class _TwelfthCBSEPageState extends State<TwelfthCBSEPage> {
     );
   }
 
+  // Build the list of files fetched from Firebase Storage
   Widget _buildFileList() {
     if (_files.isEmpty) {
       return Center(child: CircularProgressIndicator());
@@ -68,33 +68,42 @@ class _TwelfthCBSEPageState extends State<TwelfthCBSEPage> {
         itemBuilder: (context, index) {
           final file = _files[index];
           final fileName = file['name'];
-          final fileUrl = file['url'];
 
-          // Only show PDFs in the list
-          if (fileName?.endsWith('.pdf') ?? false) {
-            return ListTile(
-              title: Text(fileName ?? 'Unknown File'),
-              trailing: Icon(Icons.picture_as_pdf),
-              onTap: () {
-                // Open the PDF viewer with the file URL
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PdfViewerPage(pdfUrl: fileUrl ?? ''),
-                  ),
-                );
-              },
-            );
-          } else {
-            return ListTile(
-              title: Text('Non-PDF File'),
-            );
-          }
+          return Card(
+            elevation: 5,
+            margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: ListTile(
+              contentPadding: EdgeInsets.all(16),
+              title: Text(
+                fileName ?? 'Unknown File',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                fileName?.endsWith('.pdf') ?? false
+                    ? 'PDF Document'
+                    : 'Non-PDF File',
+                style: TextStyle(color: Colors.grey),
+              ),
+              trailing: fileName?.endsWith('.pdf') ?? false
+                  ? Icon(Icons.picture_as_pdf, color: Colors.red)
+                  : null,
+              onTap: fileName?.endsWith('.pdf') ?? false
+                  ? () {
+                // Launch external PDF viewer apps
+
+              }
+                  : null,
+            ),
+          );
         },
       );
     }
   }
 
+  // Function to open the PDF in external apps
+
+
+  // Show FloatingActionButton for admin to upload new files
   Widget _buildFloatingActionButton(BuildContext context) {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
@@ -111,23 +120,6 @@ class _TwelfthCBSEPageState extends State<TwelfthCBSEPage> {
         }
         return SizedBox.shrink();
       },
-    );
-  }
-}
-
-class PdfViewerPage extends StatelessWidget {
-  final String pdfUrl;
-
-  PdfViewerPage({required this.pdfUrl});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('PDF Viewer'),
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: SfPdfViewer.network(pdfUrl), // Display the PDF using Syncfusion's PDF viewer
     );
   }
 }

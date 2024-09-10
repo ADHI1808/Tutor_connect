@@ -42,6 +42,8 @@ dependencies:
   url_launcher: ^6.3.0
   file_picker: ^8.0.7
   path_provider: ^2.1.4
+  syncfusion_flutter_pdfviewer: ^26.2.14
+  device_info_plus: ^10.1.2
 
 dev_dependencies:
   flutter_test:

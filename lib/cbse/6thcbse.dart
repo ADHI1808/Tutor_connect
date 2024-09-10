@@ -7,12 +7,12 @@ import 'package:file_picker/file_picker.dart';
 
 import '../study.dart';
 
-class tenthCBSEPage extends StatelessWidget {
+class sixthCBSEPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('10th CBSE Materials'),
+        title: Text('6th CBSE Materials'),
         backgroundColor: Colors.blueAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -27,7 +27,7 @@ class tenthCBSEPage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          '10th CBSE Materials will be displayed here.',
+          '6th CBSE Materials will be displayed here.',
           style: TextStyle(fontSize: 18),
         ),
       ),
@@ -43,7 +43,7 @@ class tenthCBSEPage extends StatelessWidget {
           final user = snapshot.data;
           if (user?.email == 'indrasenthil@gmail.com') {
             return FloatingActionButton(
-              onPressed: () => _uploadFile(context),
+              onPressed: () => _uploadFile(context,'6th CBSE'),
               child: Icon(Icons.add),
               backgroundColor: Colors.blueAccent,
             );
@@ -53,8 +53,7 @@ class tenthCBSEPage extends StatelessWidget {
       },
     );
   }
-
-  Future<void> _uploadFile(BuildContext context) async {
+  Future<void> _uploadFile(BuildContext context, String section) async {
     // Pick files
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
@@ -66,7 +65,7 @@ class tenthCBSEPage extends StatelessWidget {
 
       for (File file in files) {
         // Show confirmation dialog
-        bool? confirmUpload = await _showConfirmationDialog(context, file);
+        bool? confirmUpload = await _showConfirmationDialog(context, file, section);
 
         if (confirmUpload == true) {
           try {
@@ -74,7 +73,7 @@ class tenthCBSEPage extends StatelessWidget {
             String fileName = file.uri.pathSegments.last;
             Reference storageReference = FirebaseStorage.instance
                 .ref()
-                .child('uploads/12thCBSE/$fileName');
+                .child('$section/$fileName'); // Use section
             UploadTask uploadTask = storageReference.putFile(file);
 
             TaskSnapshot snapshot = await uploadTask;
@@ -84,13 +83,12 @@ class tenthCBSEPage extends StatelessWidget {
 
             // Store metadata in Realtime Database
             DatabaseReference databaseReference =
-            FirebaseDatabase.instance.ref().child('files').push();
+            FirebaseDatabase.instance.ref().child(section).push(); // Use section
             await databaseReference.set({
               'fileName': fileName,
               'fileURL': downloadURL,
               'uploadedBy': FirebaseAuth.instance.currentUser?.email,
               'timestamp': DateTime.now().toIso8601String(),
-              'section': '12th CBSE',
             });
 
             ScaffoldMessenger.of(context).showSnackBar(
@@ -106,12 +104,13 @@ class tenthCBSEPage extends StatelessWidget {
     }
   }
 
-  Future<bool?> _showConfirmationDialog(BuildContext context, File file) {
+
+  Future<bool?> _showConfirmationDialog(BuildContext context, File file, String section) {
     return showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
         title: Text('Confirm Upload'),
-        content: Text('Do you want to upload "${file.uri.pathSegments.last}" to 12th CBSE?'),
+        content: Text('Do you want to upload "${file.uri.pathSegments.last}" to $section?'),
         actions: [
           TextButton(
             onPressed: () {

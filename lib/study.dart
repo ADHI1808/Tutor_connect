@@ -1,14 +1,22 @@
-import 'package:demodev/standerds/10thcbse.dart';
-import 'package:demodev/standerds/11thcbse.dart';
-import 'package:demodev/standerds/12thcbse.dart';
-import 'package:demodev/standerds/5thcbse.dart';
-import 'package:demodev/standerds/6thcbse.dart';
-import 'package:demodev/standerds/7thcbse.dart';
-import 'package:demodev/standerds/8thcbse.dart';
-import 'package:demodev/standerds/9thcbse.dart';
+import 'package:demodev/cbse/10thcbse.dart';
+import 'package:demodev/cbse/11thcbse.dart';
+import 'package:demodev/cbse/12thcbse.dart';
+import 'package:demodev/cbse/5thcbse.dart';
+import 'package:demodev/cbse/6thcbse.dart';
+import 'package:demodev/cbse/7thcbse.dart';
+import 'package:demodev/cbse/8thcbse.dart';
+import 'package:demodev/cbse/9thcbse.dart';
+import 'package:demodev/matric/10thmatric.dart';
+import 'package:demodev/matric/11thmatric.dart';
+import 'package:demodev/matric/5thmatric.dart';
+import 'package:demodev/matric/6thmatric.dart';
+import 'package:demodev/matric/7thmatric.dart';
+import 'package:demodev/matric/8thmatric.dart';
+import 'package:demodev/matric/9thmatric.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'main.dart'; // Import your TwelfthCBSEPage
+import 'main.dart';
+import 'matric/12thmatric.dart'; // Import your TwelfthCBSEPage
 
 class StudyPage extends StatelessWidget {
   @override
@@ -51,40 +59,80 @@ class ContainerGrid extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => TwelfthCBSEPage()),
               );
-            }if (item == "11th CBSE") {
+            }else if (item == "11th CBSE") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => EleventhCBSEPage()),
               );
-            }if (item == "10th CBSE") {
+            }else if (item == "10th CBSE") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => tenthCBSEPage()),
               );
-            }if (item == "9th CBSE") {
+            }else if (item == "9th CBSE") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ninethCBSEPage()),
               );
-            }if (item == "8th CBSE") {
+            }else if (item == "8th CBSE") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => eightthCBSEPage()),
               );
-            }if (item == "7th CBSE") {
+            }else if (item == "7th CBSE") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => seventhCBSEPage()),
               );
-            }if (item == "6th CBSE") {
+            }else if (item == "6th CBSE") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => sixthCBSEPage()),
               );
-            }if (item == "5th CBSE") {
+            }else if (item == "5th CBSE") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => fifthCBSEPage()),
+              );
+            }else if (item == "12th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TwelfthmatricPage()),
+              );
+            }else if (item == "11th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => EleventhMATRICPage()),
+              );
+            }else if (item == "10th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => tenthMATRICPage()),
+              );
+            }else if (item == "9th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ninethMATRICPage()),
+              );
+            }else if (item == "8th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => eightthMATRICPage()),
+              );
+            }else if (item == "7th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => seventhMATRICPage()),
+              );
+            }else if (item == "6th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => sixthMATRICPage()),
+              );
+            }else if (item == "5th MATRIC") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => fifthMAtricPage()),
               );
             }
           },

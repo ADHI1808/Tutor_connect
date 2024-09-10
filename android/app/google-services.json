@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "678254287776",
+    "project_id": "tutconnection-d0daf",
+    "storage_bucket": "tutconnection-d0daf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678254287776:android:2605dbe0cb5420cf04a2c5",
+        "android_client_info": {
+          "package_name": "com.example.demodev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx9aZPqsKosgrGxke6EmOR_O8tURX6LDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678254287776:android:8b209a58fe7535fb04a2c5",
+        "android_client_info": {
+          "package_name": "com.example.tutor_connect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx9aZPqsKosgrGxke6EmOR_O8tURX6LDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

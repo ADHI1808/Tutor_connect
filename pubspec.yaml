@@ -44,6 +44,9 @@ dependencies:
   path_provider: ^2.1.4
   syncfusion_flutter_pdfviewer: ^26.2.14
   device_info_plus: ^10.1.2
+  dio: ^5.7.0
+  permission_handler: ^11.3.1
+  open_file: ^3.5.3
 
 dev_dependencies:
   flutter_test:

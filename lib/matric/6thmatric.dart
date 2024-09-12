@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../Upload&Display/upload.dart';
+import '../Upload/upload.dart';
 import '../study.dart';
 
 class sixthMATRICPage extends StatelessWidget {

@@ -1,9 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../Upload/upload.dart';
+import '../display/display.dart';
 import '../study.dart';
 
-class eightthCBSEPage extends StatelessWidget {
+class EightthCBSEPage extends StatefulWidget {
+  @override
+  _EightthCBSEPageState createState() => _EightthCBSEPageState();
+}
+
+class _EightthCBSEPageState extends State<EightthCBSEPage> {
+  List<Map<String, String>> _files = [];
+  User? _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCurrentUser();
+    _fetchFiles();
+  }
+
+  Future<void> _fetchCurrentUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _currentUser = user;
+    });
+  }
+
+  // Fetch files for '8th CBSE'
+  Future<void> _fetchFiles() async {
+    final files = await fetchFilesFromStorage('8th CBSE'); // Pass '8th CBSE' as path
+    setState(() {
+      _files = files;
+    });
+  }
+
+  // Delete files for '8th CBSE'
+  Future<void> _deleteFile(String fileName) async {
+    await deleteFile('8th CBSE', fileName); // Pass '8th CBSE' as path
+    _fetchFiles(); // Refresh the list after deletion
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +58,11 @@ class eightthCBSEPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: false, // No back button
       ),
-      body: Center(
-        child: Text(
-          '8th CBSE Materials will be displayed here.',
-          style: TextStyle(fontSize: 18),
-        ),
+      body: buildFileList(
+        context: context,
+        files: _files,
+        currentUser: _currentUser,
+        onDelete: _deleteFile, // Pass delete callback
       ),
       floatingActionButton: _buildFloatingActionButton(context),
     );
@@ -39,7 +76,7 @@ class eightthCBSEPage extends StatelessWidget {
           final user = snapshot.data;
           if (user?.email == 'indrasenthil@gmail.com') {
             return FloatingActionButton(
-              onPressed: () => uploadFile(context, '8th CBSE'), // Call the function
+              onPressed: () => uploadFile(context, '8th CBSE'), // Upload to '8th CBSE'
               child: Icon(Icons.add),
               backgroundColor: Colors.blueAccent,
             );

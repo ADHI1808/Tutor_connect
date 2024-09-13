@@ -27,15 +27,17 @@ class _TwelfthCBSEPageState extends State<TwelfthCBSEPage> {
     });
   }
 
+  // Use the refactored function with the path '12th CBSE'
   Future<void> _fetchFiles() async {
-    final files = await fetchFilesFromStorage();
+    final files = await fetchFilesFromStorage('12th CBSE');  // Pass the path as an argument
     setState(() {
       _files = files;
     });
   }
 
+  // Use the refactored delete function with the path '12th CBSE'
   Future<void> _deleteFile(String fileName) async {
-    await deleteFile(fileName);
+    await deleteFile('12th CBSE', fileName);  // Pass the path and the file name
     _fetchFiles(); // Refresh the file list after deletion
   }
 
@@ -55,10 +57,16 @@ class _TwelfthCBSEPageState extends State<TwelfthCBSEPage> {
           },
         ),
       ),
-      body: buildFileList(context, _files, _currentUser, _deleteFile),
+      body: buildFileList(
+        context: context,
+        files: _files,
+        currentUser: _currentUser,
+        onDelete: _deleteFile,
+      ),
       floatingActionButton: _buildFloatingActionButton(context),
     );
   }
+
 
   Widget _buildFloatingActionButton(BuildContext context) {
     return StreamBuilder<User?>(
@@ -68,7 +76,7 @@ class _TwelfthCBSEPageState extends State<TwelfthCBSEPage> {
           final user = snapshot.data;
           if (user?.email == 'indrasenthil@gmail.com') {
             return FloatingActionButton(
-              onPressed: () => uploadFile(context, '12th CBSE'),
+              onPressed: () => uploadFile(context, '12th CBSE'), // Path is '12th CBSE'
               child: Icon(Icons.add),
               backgroundColor: Colors.blueAccent,
             );

@@ -67,32 +67,32 @@ class ContainerGrid extends StatelessWidget {
             }else if (item == "10th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => tenthCBSEPage()),
+                MaterialPageRoute(builder: (context) => TenthCBSEPage()),
               );
             }else if (item == "9th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ninethCBSEPage()),
+                MaterialPageRoute(builder: (context) => NinethCBSEPage()),
               );
             }else if (item == "8th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => eightthCBSEPage()),
+                MaterialPageRoute(builder: (context) => EightthCBSEPage()),
               );
             }else if (item == "7th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => seventhCBSEPage()),
+                MaterialPageRoute(builder: (context) => SeventhCBSEPage()),
               );
             }else if (item == "6th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => sixthCBSEPage()),
+                MaterialPageRoute(builder: (context) => SixthCBSEPage()),
               );
             }else if (item == "5th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => fifthCBSEPage()),
+                MaterialPageRoute(builder: (context) => FifthCBSEPage()),
               );
             }else if (item == "12th MATRIC") {
               Navigator.push(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../pdfviewer.dart';
+import 'pdfviewer.dart';
 
 // Function to fetch files from any specified storage path
 Future<List<Map<String, String>>> fetchFilesFromStorage(String storagePath) async {

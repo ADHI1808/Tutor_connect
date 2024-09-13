@@ -15,7 +15,7 @@ import 'package:demodev/matric/8thmatric.dart';
 import 'package:demodev/matric/9thmatric.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'main.dart';
+import 'SigninSignup/signup.dart';
 import 'matric/12thmatric.dart'; // Import your TwelfthCBSEPage
 
 class StudyPage extends StatelessWidget {

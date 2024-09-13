@@ -107,32 +107,32 @@ class ContainerGrid extends StatelessWidget {
             }else if (item == "10th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => tenthMATRICPage()),
+                MaterialPageRoute(builder: (context) => TenthMATRICPage()),
               );
             }else if (item == "9th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ninethMATRICPage()),
+                MaterialPageRoute(builder: (context) => NinethMATRICPage()),
               );
             }else if (item == "8th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => eightthMATRICPage()),
+                MaterialPageRoute(builder: (context) => EightthMATRICPage()),
               );
             }else if (item == "7th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => seventhMATRICPage()),
+                MaterialPageRoute(builder: (context) => SeventhMATRICPage()),
               );
             }else if (item == "6th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => sixthMATRICPage()),
+                MaterialPageRoute(builder: (context) => SixthMATRICPage()),
               );
             }else if (item == "5th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => fifthMAtricPage()),
+                MaterialPageRoute(builder: (context) => FifthMAtricPage()),
               );
             }
           },

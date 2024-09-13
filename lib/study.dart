@@ -15,7 +15,7 @@ import 'package:demodev/matric/8thmatric.dart';
 import 'package:demodev/matric/9thmatric.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'main.dart';
+import 'SigninSignup/signup.dart';
 import 'matric/12thmatric.dart'; // Import your TwelfthCBSEPage
 
 class StudyPage extends StatelessWidget {
@@ -67,32 +67,32 @@ class ContainerGrid extends StatelessWidget {
             }else if (item == "10th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => tenthCBSEPage()),
+                MaterialPageRoute(builder: (context) => TenthCBSEPage()),
               );
             }else if (item == "9th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ninethCBSEPage()),
+                MaterialPageRoute(builder: (context) => NinethCBSEPage()),
               );
             }else if (item == "8th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => eightthCBSEPage()),
+                MaterialPageRoute(builder: (context) => EightthCBSEPage()),
               );
             }else if (item == "7th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => seventhCBSEPage()),
+                MaterialPageRoute(builder: (context) => SeventhCBSEPage()),
               );
             }else if (item == "6th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => sixthCBSEPage()),
+                MaterialPageRoute(builder: (context) => SixthCBSEPage()),
               );
             }else if (item == "5th CBSE") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => fifthCBSEPage()),
+                MaterialPageRoute(builder: (context) => FifthCBSEPage()),
               );
             }else if (item == "12th MATRIC") {
               Navigator.push(
@@ -107,32 +107,32 @@ class ContainerGrid extends StatelessWidget {
             }else if (item == "10th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => tenthMATRICPage()),
+                MaterialPageRoute(builder: (context) => TenthMATRICPage()),
               );
             }else if (item == "9th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ninethMATRICPage()),
+                MaterialPageRoute(builder: (context) => NinethMATRICPage()),
               );
             }else if (item == "8th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => eightthMATRICPage()),
+                MaterialPageRoute(builder: (context) => EightthMATRICPage()),
               );
             }else if (item == "7th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => seventhMATRICPage()),
+                MaterialPageRoute(builder: (context) => SeventhMATRICPage()),
               );
             }else if (item == "6th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => sixthMATRICPage()),
+                MaterialPageRoute(builder: (context) => SixthMATRICPage()),
               );
             }else if (item == "5th MATRIC") {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => fifthMAtricPage()),
+                MaterialPageRoute(builder: (context) => FifthMAtricPage()),
               );
             }
           },

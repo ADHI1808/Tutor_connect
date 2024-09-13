@@ -1,49 +1,83 @@
-import 'package:demodev/study.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../splash.dart';
+import 'login.dart';
 
-import 'main.dart';
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
-  String? _email, _password;
+  String? _email, _password, _confirmPassword;
   bool _isLoading = false;
 
-  Future<void> _login() async {
+  Future<void> _signUp() async {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState?.save();
-      setState(() {
-        _isLoading = true;
-      });
-      try {
-        await _auth.signInWithEmailAndPassword(
-          email: _email!,
-          password: _password!,
-        );
-        // Navigate to StudyPage on successful login
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => StudyPage()),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Login successful!')),
-        );
-      } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${e.message}')),
-        );
-      } finally {
+      if (_password == _confirmPassword) {
         setState(() {
-          _isLoading = false;
+          _isLoading = true;
         });
+        try {
+          await _auth.createUserWithEmailAndPassword(
+            email: _email!,
+            password: _password!,
+          );
+
+          // After successful signup, navigate to the init screen to check authentication status
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => InitScreen()),
+          );
+
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text('Signup successful!'),
+              backgroundColor: Colors.green,
+              behavior: SnackBarBehavior.floating,
+              duration: const Duration(seconds: 2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              margin: const EdgeInsets.all(20),
+            ),
+          );
+        } on FirebaseAuthException catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error: ${e.message}'),
+              backgroundColor: Colors.red,
+              behavior: SnackBarBehavior.floating,
+              duration: const Duration(seconds: 3),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              margin: const EdgeInsets.all(20),
+            ),
+          );
+        } finally {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Passwords do not match'),
+            backgroundColor: Colors.orange,
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 2),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            margin: const EdgeInsets.all(20),
+          ),
+        );
       }
     }
   }
@@ -62,13 +96,13 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Icon(
-                  Icons.login,
+                  Icons.person_add_alt_1,
                   size: 100.0,
                   color: Colors.blue,
                 ),
                 const SizedBox(height: 40),
                 const Text(
-                  "Welcome Back",
+                  "Create an Account",
                   style: TextStyle(
                     fontSize: 26.0,
                     fontWeight: FontWeight.bold,
@@ -76,8 +110,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 30),
-
-                // Email field
                 TextFormField(
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.email),
@@ -99,8 +131,6 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-
-                // Password field
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -121,16 +151,35 @@ class _LoginPageState extends State<LoginPage> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    hintText: "Confirm Password",
+                    filled: true,
+                    fillColor: Colors.blue.shade50,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  onSaved: (value) => _confirmPassword = value,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    return null;
+                  },
+                ),
                 const SizedBox(height: 30),
-
-                // Login button
                 _isLoading
                     ? const CircularProgressIndicator()
                     : SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: _login,
+                    onPressed: _signUp,
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30.0),
@@ -138,22 +187,17 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.blue,
                     ),
                     child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
+                      'Sign Up',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ),
                 const SizedBox(height: 15),
-
-                // Signup option
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Don't have an account?",
+                      "Already have an account?",
                       style: TextStyle(color: Colors.grey),
                     ),
                     TextButton(
@@ -161,10 +205,10 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SignUpPage()));
+                                builder: (context) => const LoginPage()));
                       },
                       child: const Text(
-                        "Sign Up",
+                        "Login",
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,

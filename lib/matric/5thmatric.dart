@@ -1,9 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../Upload/upload.dart';
+import '../display/display.dart';
 import '../study.dart';
 
-class fifthMAtricPage extends StatelessWidget {
+class FifthMAtricPage extends StatefulWidget {
+  @override
+  _FifthMAtricPageState createState() => _FifthMAtricPageState();
+}
+
+class _FifthMAtricPageState extends State<FifthMAtricPage> {
+  List<Map<String, String>> _files = [];
+  User? _currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCurrentUser();
+    _fetchFiles();
+  }
+
+  Future<void> _fetchCurrentUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _currentUser = user;
+    });
+  }
+
+  // Fetch files for '5th MATRIC'
+  Future<void> _fetchFiles() async {
+    final files = await fetchFilesFromStorage('5th MATRIC'); // Fetch files from '5th MATRIC' path
+    setState(() {
+      _files = files;
+    });
+  }
+
+  // Delete files for '5th MATRIC'
+  Future<void> _deleteFile(String fileName) async {
+    await deleteFile('5th MATRIC', fileName); // Delete file from '5th MATRIC' path
+    _fetchFiles(); // Refresh the list after deletion
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +58,11 @@ class fifthMAtricPage extends StatelessWidget {
         ),
         automaticallyImplyLeading: false, // No back button
       ),
-      body: Center(
-        child: Text(
-          '5th MATRIC Materials will be displayed here.',
-          style: TextStyle(fontSize: 18),
-        ),
+      body: buildFileList(
+        context: context,
+        files: _files,
+        currentUser: _currentUser,
+        onDelete: _deleteFile, // Pass delete callback
       ),
       floatingActionButton: _buildFloatingActionButton(context),
     );
@@ -39,7 +76,7 @@ class fifthMAtricPage extends StatelessWidget {
           final user = snapshot.data;
           if (user?.email == 'indrasenthil@gmail.com') {
             return FloatingActionButton(
-              onPressed: () => uploadFile(context, '5th MATRIC'), // Call the function
+              onPressed: () => uploadFile(context, '5th MATRIC'), // Upload to '5th MATRIC'
               child: Icon(Icons.add),
               backgroundColor: Colors.blueAccent,
             );

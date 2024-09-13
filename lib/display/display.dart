@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import '../pdfviewer.dart';
+import 'pdfviewer.dart';
 
-// Function to fetch files from storage
-Future<List<Map<String, String>>> fetchFilesFromStorage() async {
+// Function to fetch files from any specified storage path
+Future<List<Map<String, String>>> fetchFilesFromStorage(String storagePath) async {
   try {
-    final ListResult result = await FirebaseStorage.instance.ref('12th CBSE').listAll();
+    final ListResult result = await FirebaseStorage.instance.ref(storagePath).listAll();
     final List<Map<String, String>> files = [];
 
     for (var ref in result.items) {
@@ -22,17 +22,22 @@ Future<List<Map<String, String>>> fetchFilesFromStorage() async {
   }
 }
 
-// Function to delete a file
-Future<void> deleteFile(String fileName) async {
+// Function to delete a file from any specified storage path
+Future<void> deleteFile(String storagePath, String fileName) async {
   try {
-    await FirebaseStorage.instance.ref('12th CBSE/$fileName').delete();
+    await FirebaseStorage.instance.ref('$storagePath/$fileName').delete();
   } catch (e) {
     print('Error deleting file: $e');
   }
 }
 
-// Widget to build the list of files
-Widget buildFileList(BuildContext context, List<Map<String, String>> files, User? currentUser, Function(String) onDelete) {
+// Widget to build the list of files from any specified storage path
+Widget buildFileList({
+  required BuildContext context,
+  required List<Map<String, String>> files,
+  required User? currentUser,
+  required Function(String) onDelete,
+}) {
   if (files.isEmpty) {
     return Center(child: CircularProgressIndicator());
   } else {

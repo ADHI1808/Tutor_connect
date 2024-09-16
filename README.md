@@ -1,20 +1,16 @@
-<<<<<<< HEAD
-# demodev
+# 📚 TutorConnect
 
-A new Flutter project.
+This mobile application is designed to help tutors **manage study materials** efficiently! It allows tutors to upload, manage, and delete files (e.g., PDFs, notes, presentations) for students. 📄 Students can easily download these materials based on schooling standards, such as **CBSE grades**. The app is built with **Flutter** 🚀 and integrates **Firebase** 🔥 for backend services, including file storage and user authentication.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+- **🔑 Tutor Login**: Only authorized tutors can upload, update, and delete study materials.
+- **👩‍🎓 Student Access**: Students can browse and download available materials according to their grade level.
+- **⬆️ File Uploading**: Tutors can upload study materials (e.g., PDFs, presentations, documents) directly through the app.
+- **🗂️ File Management**: Tutors can manage their materials, including deleting outdated or irrelevant files.
+- **Firebase Integration**:
+  - **🔐 Firebase Authentication**: Secure login system for tutors.
+  - **☁️ Firebase Storage**: Upload and store files securely in the cloud.
+  - **📂 Firebase Realtime Database**: Organize files according to categories like `12th CBSE`, `11th CBSE`, etc.
+- **🎨 Custom UI**: User-friendly interface tailored for easy access and navigation for both tutors and students.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# Tutor_connect
->>>>>>> ebb23e47e88e311843bf2ab5d99105e655149ce2

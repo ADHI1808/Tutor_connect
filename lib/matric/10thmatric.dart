@@ -45,7 +45,7 @@ class _TenthMATRICPageState extends State<TenthMATRICPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('10th MATRIC Materials'),
+        title: Text('10th MATRIC Materials'),centerTitle: true,
         backgroundColor: Colors.blueAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),

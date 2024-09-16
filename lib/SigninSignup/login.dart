@@ -1,8 +1,7 @@
+import 'package:demodev/SigninSignup/signup.dart';
 import 'package:demodev/study.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,6 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   String? _email, _password;
   bool _isLoading = false;
+  bool _passwordVisible = false; // Variable to toggle password visibility
 
   Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -100,9 +100,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 20),
 
-                // Password field
+                // Password field with view/hide icon
                 TextFormField(
-                  obscureText: true,
+                  obscureText: !_passwordVisible, // Toggles between hide/show
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock),
                     hintText: "Password",
@@ -111,6 +111,18 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
                       borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible; // Toggle visibility
+                        });
+                      },
                     ),
                   ),
                   onSaved: (value) => _password = value,

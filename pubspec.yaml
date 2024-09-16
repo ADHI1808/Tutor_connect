@@ -42,6 +42,12 @@ dependencies:
   url_launcher: ^6.3.0
   file_picker: ^8.0.7
   path_provider: ^2.1.4
+  syncfusion_flutter_pdfviewer: ^26.2.14
+  device_info_plus: ^10.1.2
+  dio: ^5.7.0
+  permission_handler: ^11.3.1
+  open_file: ^3.5.3
+  fluttertoast: ^8.2.8
 
 dev_dependencies:
   flutter_test:
@@ -66,9 +72,24 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+     - assets/12thcbse.png
+     - assets/11thcbse.png
+     - assets/10thcbse.png
+     - assets/9thcbse.png
+     - assets/8thcbse.png
+     - assets/7thcbse.png
+     - assets/6thcbse.png
+     - assets/5thcbse.png
+     - assets/12thmatric.png
+     - assets/11thmatric.png
+     - assets/10thmatric.png
+     - assets/9thmatric.png
+     - assets/8thmatric.png
+     - assets/7thmatric.png
+     - assets/6thmatric.png
+     - assets/5thmatric.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

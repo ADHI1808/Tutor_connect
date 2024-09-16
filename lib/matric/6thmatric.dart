@@ -45,7 +45,7 @@ class _SixthMATRICPageState extends State<SixthMATRICPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('6th MATRIC Materials'),
+        title: Text('6th MATRIC Materials'),centerTitle: true,
         backgroundColor: Colors.blueAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),

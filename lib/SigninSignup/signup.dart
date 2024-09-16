@@ -15,6 +15,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   String? _email, _password, _confirmPassword;
   bool _isLoading = false;
+  bool _obscurePassword = true; // To toggle password visibility
+  bool _obscureConfirmPassword = true; // To toggle confirm password visibility
 
   Future<void> _signUp() async {
     if (_formKey.currentState?.validate() ?? false) {
@@ -131,8 +133,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 20),
+
+                // Password field with visibility toggle
                 TextFormField(
-                  obscureText: true,
+                  obscureText: _obscurePassword,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock),
                     hintText: "Password",
@@ -141,6 +145,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
                       borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
                     ),
                   ),
                   onSaved: (value) => _password = value,
@@ -152,8 +168,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 20),
+
+                // Confirm password field with visibility toggle
                 TextFormField(
-                  obscureText: true,
+                  obscureText: _obscureConfirmPassword,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
                     hintText: "Confirm Password",
@@ -162,6 +180,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30.0),
                       borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureConfirmPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureConfirmPassword = !_obscureConfirmPassword;
+                        });
+                      },
                     ),
                   ),
                   onSaved: (value) => _confirmPassword = value,
@@ -188,7 +218,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: const Text(
                       'Sign Up',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                      style:
+                      TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ),

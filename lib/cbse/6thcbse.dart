@@ -45,7 +45,7 @@ class _SixthCBSEPageState extends State<SixthCBSEPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('6th CBSE Materials'),
+        title: Text('6th CBSE Materials'),centerTitle: true,
         backgroundColor: Colors.blueAccent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
